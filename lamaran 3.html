@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Lamaran Material</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .material-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(60,60,60,0.15);
+      width: 370px;
+      max-width: 95vw;
+      padding: 32px 28px 24px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .section {
+      opacity: 0;
+      transform: translateY(40px) scale(0.98);
+      transition: opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+    }
+    .section.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+      position: relative;
+    }
+    .material-btn {
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 24px;
+      padding: 12px 32px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(25,118,210,0.15);
+      margin-top: 24px;
+      transition: background 0.2s;
+      outline: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .material-btn:active {
+      background: #1565c0;
+    }
+    .material-btn[disabled] {
+      background: #bdbdbd;
+      cursor: not-allowed;
+    }
+    .material-icon {
+      font-size: 1.3em;
+      vertical-align: middle;
+    }
+    .material-progress {
+      width: 100%;
+      height: 4px;
+      background: #e3e3e3;
+      border-radius: 2px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .material-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #1976d2, #64b5f6);
+      width: 0%;
+      transition: width 0.5s cubic-bezier(.4,0,.2,1);
+    }
+    .material-chip {
+      display: inline-block;
+      background: #e3f2fd;
+      color: #1976d2;
+      border-radius: 16px;
+      padding: 4px 12px;
+      font-size: 0.95em;
+      margin: 2px 0;
+      vertical-align: middle;
+    }
+    .material-list {
+      margin: 0;
+      padding: 0 0 0 18px;
+      color: #333;
+    }
+    .material-list li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .material-quote {
+      font-style: italic;
+      color: #607d8b;
+      margin: 18px 0 0 0;
+      border-left: 3px solid #1976d2;
+      padding-left: 12px;
+    }
+    .material-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 18px 0;
+    }
+    .material-diagram svg {
+      width: 80px;
+      height: 80px;
+      display: block;
+    }
+    @media (max-width: 500px) {
+      .material-card {
+        padding: 18px 6vw 18px 6vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="material-card">
+    <div class="material-progress">
+      <div class="material-progress-bar" id="progressBar"></div>
+    </div>
+    <!-- Section 1: Pengantar Diri -->
+    <div class="section active" id="section-1">
+      <h2>
+        <span class="material-icon material-icons">person</span>
+        Perkenalan Diri
+      </h2>
+      <p>Halo, namaku <span class="material-chip">Zahi</span>, seorang <b>mahasiswa Teknik Material</b> yang selalu penasaran dengan struktur dan sifat-sifat material, baik logam, polimer, maupun keramik.</p>
+      <div class="material-diagram">
+        <!-- Simple crystal lattice SVG -->
+        <svg viewBox="0 0 80 80">
+          <circle cx="20" cy="20" r="8" fill="#1976d2"/>
+          <circle cx="60" cy="20" r="8" fill="#1976d2"/>
+          <circle cx="20" cy="60" r="8" fill="#1976d2"/>
+          <circle cx="60" cy="60" r="8" fill="#1976d2"/>
+          <line x1="20" y1="20" x2="60" y2="20" stroke="#90caf9" stroke-width="3"/>
+          <line x1="20" y1="20" x2="20" y2="60" stroke="#90caf9" stroke-width="3"/>
+          <line x1="60" y1="20" x2="60" y2="60" stroke="#90caf9" stroke-width="3"/>
+          <line x1="20" y1="60" x2="60" y2="60" stroke="#90caf9" stroke-width="3"/>
+        </svg>
+      </div>
+      <p class="material-quote">"Seperti atom dalam kisi kristal, aku ingin membangun ikatan yang kuat dan teratur bersamamu."</p>
+      <button class="material-btn" onclick="nextSection()">
+        Lanjut <span class="material-icon material-icons">arrow_forward</span>
+      </button>
+    </div>
+    <!-- Section 2: Alasan Memilih -->
+    <div class="section" id="section-2">
+      <h2>
+        <span class="material-icon material-icons">favorite</span>
+        Alasan Memilihmu
+      </h2>
+      <ul class="material-list">
+        <li>Kamu seperti <b>material komposit</b>: punya banyak kelebihan yang bisa jadi teladan.</li>
+        <li>Ketulusanmu <span class="material-chip">tangguh</span> seperti baja, namun hatimu <span class="material-chip">elastis</span> seperti polimer.</li>
+        <li>Setiap perkataanmu bisa <b>menghantarkan kebahagiaan</b> sebaik tembaga menghantarkan listrik.</li>
+        <li>Kehadiranmu membuat hidupku <b>lebih terstruktur</b>, seperti kisi kristal yang sempurna.</li>
+      </ul>
+      <div class="material-diagram">
+        <!-- Simple stress-strain curve SVG -->
+        <svg viewBox="0 0 80 60">
+          <polyline points="5,55 20,50 35,40 50,25 65,10 75,8" fill="none" stroke="#1976d2" stroke-width="3"/>
+          <text x="60" y="20" font-size="10" fill="#1976d2">Ductile</text>
+        </svg>
+      </div>
+      <p class="material-quote">"Kamu adalah material istimewa yang bisa jadi kakak baru"</p>
+      <button class="material-btn" onclick="nextSection()">
+        Lanjut <span class="material-icon material-icons">arrow_forward</span>
+      </button>
+    </div>
+    <!-- Section 3: Lamaran (Tidak Bisa Nolak) -->
+    <div class="section" id="section-3">
+      <h2>
+        <span class="material-icon material-icons">question_answer</span>
+        Lamaran Spesial
+      </h2>
+      <p>
+        Setelah mengenalmu, aku merasa ingin membangun <b>ikatan kovalen</b> yang kuat.<br>
+        <b>Maukah kamu menjadi Kakak Jahimku?</b>
+      </p>
+      <div style="display: flex; gap: 16px; margin-top: 24px;">
+        <button class="material-btn" style="flex:1; opacity:0.5; pointer-events:none;">
+          <span class="material-icon material-icons">close</span> Tidak
+        </button>
+        <button class="material-btn" style="flex:1;" onclick="nextSection()">
+          <span class="material-icon material-icons">check</span> Ya, Aku Mau!
+        </button>
+      </div>
+    </div>
+    <!-- Section 4: Hasil Lamaran -->
+    <div class="section" id="section-4">
+      <h2>
+        <span class="material-icon material-icons">celebration</span>
+        Hasil Lamaran
+      </h2>
+      <p>
+        <b>Terima kasih sudah mau jadi KAJAHIM-KU!</b><br>
+        Seperti <span class="material-chip">paduan logam</span> yang saling melengkapi, semoga hubungan kita sebagai kajahim-dejahim <b>kuat, tahan korosi, dan penuh inovasi</b>.<br>
+        Mari kita bersama-sama membangun masa depan yang <span class="material-chip">padat</span> dan <span class="material-chip">bernilai tinggi</span>!
+      </p>
+      <div class="material-diagram">
+        <!-- Simple phase diagram SVG -->
+        <svg viewBox="0 0 80 60">
+          <polyline points="10,50 30,30 50,20 70,10" fill="none" stroke="#1976d2" stroke-width="3"/>
+          <line x1="30" y1="30" x2="30" y2="55" stroke="#90caf9" stroke-width="2" stroke-dasharray="4,2"/>
+          <line x1="50" y1="20" x2="50" y2="55" stroke="#90caf9" stroke-width="2" stroke-dasharray="4,2"/>
+          <text x="12" y="58" font-size="8" fill="#1976d2">Solid</text>
+          <text x="32" y="58" font-size="8" fill="#1976d2">Liquid+Solid</text>
+          <text x="52" y="58" font-size="8" fill="#1976d2">Liquid</text>
+        </svg>
+      </div>
+      <p class="material-quote">"Bersama, kita akan menjadi <b>ikatan keluarga baru</b> yang lebih kuat dan PADAT."</p>
+    </div>
+  </div>
+  <script>
+    let currentSection = 1;
+    const totalSections = 4;
+    let isAnimating = false;
+
+    function showSection(idx, direction = 1) {
+      if (isAnimating) return;
+      isAnimating = true;
+      const prevSection = document.getElementById('section-' + currentSection);
+      const nextSection = document.getElementById('section-' + idx);
+
+      // Out animation
+      prevSection.style.transition = 'opacity 0.4s, transform 0.4s';
+      prevSection.style.opacity = '0';
+      prevSection.style.transform = `translateY(${direction * -40}px) scale(0.98)`;
+
+      setTimeout(() => {
+        prevSection.classList.remove('active');
+        prevSection.style.transition = '';
+        prevSection.style.opacity = '';
+        prevSection.style.transform = '';
+
+        // In animation
+        nextSection.classList.add('active');
+        nextSection.style.opacity = '0';
+        nextSection.style.transform = `translateY(${direction * 40}px) scale(0.98)`;
+        setTimeout(() => {
+          nextSection.style.transition = 'opacity 0.5s, transform 0.5s';
+          nextSection.style.opacity = '1';
+          nextSection.style.transform = 'translateY(0) scale(1)';
+        }, 10);
+
+        setTimeout(() => {
+          nextSection.style.transition = '';
+          nextSection.style.opacity = '';
+          nextSection.style.transform = '';
+          isAnimating = false;
+        }, 510);
+      }, 410);
+
+      // Progress bar
+      document.getElementById('progressBar').style.width = ((idx-1)/(totalSections-1))*100 + "%";
+      currentSection = idx;
+    }
+
+    function nextSection() {
+      if (currentSection < totalSections && !isAnimating) {
+        showSection(currentSection + 1, 1);
+      }
+    }
+
+    // Inisialisasi
+    document.addEventListener('DOMContentLoaded', function() {
+      for (let i = 2; i <= totalSections; i++) {
+        document.getElementById('section-' + i).classList.remove('active');
+      }
+      document.getElementById('section-1').classList.add('active');
+      document.getElementById('progressBar').style.width = "0%";
+    });
+  </script>
+</body>
+</html>
+
+
+
+
